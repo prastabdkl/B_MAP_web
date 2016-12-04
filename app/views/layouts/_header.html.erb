@@ -1,0 +1,22 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-bar" aria-expanded="false">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'b map'.upcase, '#', id: "logo" %>
+    </div>
+
+    <div class="collapsed navbar-collapse" id="header-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Home', '#' %></li>
+        <li><%= link_to 'Help', '#' %></li>
+        <li><%= link_to 'Log in', '#' %></li>
+        <li><%= link_to 'Sign up', '#' %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
