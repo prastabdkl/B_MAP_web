@@ -1,30 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "StaticPages", type: :request do
+subject {page}
+
   describe "Home pages" do
-    it "should have the content 'B Map'" do
-      visit 'static_pages/home'
-      expect(page).to have_content('B MAP')
-    end
+    before { visit root_path }
 
-    it "should have title 'Home | Business Management App'" do
-      visit 'static_pages/home'
-      expect(page).to have_title('Home | Business Management App')
-    end
-
-    it "should have 'sign up now!' button" do
-      visit 'static_pages/home'
-      expect(page).to have_css(".btn-lg")
-    end
-
-    it "should have a full background image" do
-      visit 'static_pages/home'
-      expect(page).to have_css('#full-img-background')
-    end
-
-    it "should have a navigation fixed on top" do
-      visit 'static_pages/home'
-      expect(page).to have_css('.navbar-fixed-top')
-    end
+    it { should have_content('B MAP')}
+    it { should have_title('Home | Business Management App')}
+    it {should have_css('.btn-lg')}
+    it {should have_css('#full-img-background')}
+    it {should have_css('.navbar-fixed-top')}
+    it {should have_link('home'.capitalize)}
+    it {should have_link('help'.capitalize)}
+    it {should have_link('log in'.capitalize)}
+    it {should have_link('sign up'.capitalize)}
   end
 end
