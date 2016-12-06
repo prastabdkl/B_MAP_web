@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :users
   match '/help', to: 'static_pages#help', via: 'get'
-
+  match '/signup', to: 'users#new', via: 'get'
   root 'static_pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.

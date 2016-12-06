@@ -7,7 +7,7 @@ subject {page}
     before { visit root_path }
 
     it { should have_content('B MAP')}
-    it { should have_title('Home | Business Management App')}
+    it { should have_title(full_title('Home'))}
     it {should have_css('.btn-lg')}
     it {should have_css('#full-img-background')}
     it {should have_css('.navbar-fixed-top')}
@@ -15,5 +15,11 @@ subject {page}
     it {should have_link('help'.capitalize)}
     it {should have_link('log in'.capitalize)}
     it {should have_link('sign up'.capitalize)}
+  end
+
+  describe "Help pages" do
+    before { visit help_path}
+
+    it {should have_title(full_title('Help'))}
   end
 end
