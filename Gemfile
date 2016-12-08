@@ -58,6 +58,8 @@ group :test do
   gem 'capybara'
   gem 'spring-commands-rspec'
   gem 'guard-rspec'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
 
 group :production do

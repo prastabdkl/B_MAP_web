@@ -20,13 +20,14 @@ body {
   padding-top: 50px;
 }
 
+h1 {
+  font-size: 5em;
+  letter-spacing: -2px;
+  font-weight: bold;
+}
+
 .center {
   text-align: center;
-  h1 {
-    font-size: 5em;
-    letter-spacing: -2px;
-    font-weight: bold;
-  }
   h2 {
     font-size: 1.5em;
     letter-spacing: -1px;
@@ -73,7 +74,8 @@ input {
 }
 
 .well {
-  width: 50%
+  width: 50%;
+  margin:0 auto;
 }
 
 #error_explanation {
