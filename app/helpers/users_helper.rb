@@ -6,4 +6,8 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
 
+  def count_admin_users
+    User.where(is_admin: true).count
+  end
+
 end

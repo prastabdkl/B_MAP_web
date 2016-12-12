@@ -75,8 +75,8 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.order = :random
-  Kernel.srand config.seed
+#  config.order = :random
+#  Kernel.srand config.seed
 
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards

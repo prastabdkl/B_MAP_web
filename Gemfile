@@ -6,6 +6,9 @@ gem 'rails', '4.2.6'
 
 gem 'bootstrap-sass'
 gem 'sprockets'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 gem 'email_validator'
 # Use SCSS for stylesheets
@@ -58,7 +61,7 @@ group :test do
   gem 'capybara'
   gem 'spring-commands-rspec'
   gem 'guard-rspec'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
 
