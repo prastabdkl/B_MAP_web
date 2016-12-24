@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   before_save {self.email = self.email.downcase}
   before_create :create_remember_token
+  before_create :create_activation_digest
 
   validates :name, presence: true, length: { maximum: 50}
   validates :email, presence: true, email: true, uniqueness: { case_sensitive: false}
@@ -15,8 +16,25 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  private
-  def create_remember_token
-    self.remember_token = User.digest(User.new_remember_token)
+  # Returns true if the given token matches the digest
+  def authenticate?(attribute, key)
+    if attribute.include key
+      return true
+    else
+      return false
+    end
   end
+
+  def activate
+    update_columns(activated: true, activated_at: Time.zone.now)
+  end
+
+  private
+    def create_remember_token
+      self.remember_token = User.digest(User.new_remember_token)
+    end
+
+    def create_activation_digest
+      self.activation_digest = User.digest(User.new_remember_token)
+    end
 end

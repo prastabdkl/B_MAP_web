@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :account_activations, only: [:edit]
   match '/help', to: 'static_pages#help', via: 'get'
   match '/signup', to: 'users#new', via: 'get'
   match '/login', to: 'sessions#new', via: 'get'
