@@ -1,7 +1,93 @@
 <% provide(:title, @user.name) %>
-<div class="container">
+<div class="container right", style="width: 85%">
   <h1>
     <%= gravatar_for(@user) %>
     <%= @user.name %>
   </h1>
+
+  <div class="well">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            Personal details.
+          </div>
+          <table class="table table-bordered table-hover">
+            <tr>
+              <td>Name:</td>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <td>Address:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Bank Name:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>A/C no.:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Nationality:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td colspan="2">Contacts<br />
+                <table class="table table-bordered table-hover">
+                  <tr>
+                    <td>Mobile:</td>
+                    <td><%= "98********" %></td>
+                  </tr>
+                  <tr>
+                    <td>Home:</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Work:</td>
+                    <td></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            Account details.
+          </div>
+          <table class="table table-hover table-bordered">
+            <tr>
+              <td>Post:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Salary:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Joining date:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Attendance:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Working plan:</td>
+              <td>day/hour based</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-success' %>
+  </div>
 </div>

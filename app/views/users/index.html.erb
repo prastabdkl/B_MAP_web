@@ -1,18 +1,21 @@
 <% provide(:title, "All users") %>
-<h1>All users</h1>
+<h1 class="right">All users</h1>
 
-<ul class="users">
-  <% @user.each do |user| %>
-    <li>
-      <%= gravatar_for user %>
-      <%= link_to user.name, user %>
-      <% if current_user.is_admin? && !current_user?(user) %>
-        <%= link_to user, class: "btn", method: :delete, data: { confirm: "Are you sure?"} do %>
-          <span class="glyphicon glyphicon-remove"></span> delete
+<%= will_paginate @user, class: 'right' %>
+<div class="right">
+  <ul class="users right">
+    <% @user.each do |user| %>
+      <li>
+        <%= gravatar_for user %>
+        <%= link_to user.name, user %>
+        <% if current_user.is_admin? && !current_user?(user) %>
+          <%= link_to user, class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?"}, style: "float: right" do %>
+            <span class="glyphicon glyphicon-remove"></span> delete
+          <% end %>
         <% end %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
-<%= will_paginate @user %>
+<%= will_paginate @user, class: 'right' %>
