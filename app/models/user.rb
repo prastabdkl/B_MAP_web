@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_one :account, dependent: :destroy
   before_save {self.email = self.email.downcase}
   before_create :create_remember_token
   before_create :create_activation_digest
@@ -7,6 +8,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, email: true, uniqueness: { case_sensitive: false}
   validates :password, presence: true, length: { minimum: 6}
   has_secure_password
+
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

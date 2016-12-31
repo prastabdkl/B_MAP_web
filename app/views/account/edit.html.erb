@@ -1,0 +1,35 @@
+<% provide(:title, "Edit user's account details") %>
+<h1 class="center right">Edit user's account details</h1>
+
+<div class="container right">
+  <div class="row">
+    <div class="span6 offset3">
+      <%= form_for(@account) do |f| %>
+        <div class="well well-md">
+          <%= f.label :post %>
+          <%= f.text_field :post, class: "form-control" %>
+
+          <%= f.label :salary %>
+          <%= f.number_field :salary,  class:"text_field form-control", step: :any %>
+
+          <%= f.label :joining_date %>
+          <%= f.datetime_local_field :joining_date, class: "form-control" %>
+
+          <%= f.label :working_plan %>
+          <table class="table">
+            <tr>
+              <td><%= f.radio_button :working_plan, 'Part' %></td>
+              <td><%= f.label 'Part' %></td>
+            </tr>
+            <tr>
+              <td><%= f.radio_button :working_plan, 'Full' %></td>
+              <td><%= f.label 'Full' %></td>
+            </tr>
+          </table>
+        </div>
+
+        <%= f.submit "Update account", class: 'btn btn-large' %>
+      <% end %>
+    </div>
+  </div>
+</div>

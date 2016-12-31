@@ -15,6 +15,27 @@
           <%= f.label :email %>
           <%= f.email_field :email, class: "form-control" %>
 
+          <%= f.label :address %>
+          <%= f.text_field :address, class: "form-control" %>
+
+          <%= f.label :bank_name %>
+          <%= f.text_field :bank_name, class: 'form-control' %>
+
+          <%= f.label :account_number %>
+          <%= f.text_field :account_number, class: 'form-control' %>
+
+          <div class="well">
+            <%= f.label "Contacts" %><br>
+            <%= f.label :mobile %>
+            <%= f.telephone_field :mobile, class: 'form-control' %>
+
+            <%= f.label :home %>
+            <%= f.telephone_field :home, class: 'form-control' %>
+
+            <%= f.label :work %>
+            <%= f.telephone_field :work, class: 'form-control' %>
+          </div>
+
           <%= f.label :password %>
           <%= f.password_field :password, class: "form-control" %>
 
