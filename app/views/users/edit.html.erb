@@ -9,6 +9,10 @@
         <%= render 'shared/error_messages' %>
 
         <div class="well well-md">
+          <%= gravatar_for(current_user) %>
+          <%= f.file_field :image, class: "form-control" %>
+          <%= f.hidden_field :image_cache %>
+
           <%= f.label :name %>
           <%= f.text_field :name, class: "form-control" %>
 
@@ -44,10 +48,7 @@
 
           <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
         </div>
-      <% end %>
-
-      <%= gravatar_for(@user) %>
-      <a href="http://gravatar.com/emails">change</a>
+    <% end %>
     </div>
   </div>
 </div>

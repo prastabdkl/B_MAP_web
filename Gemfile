@@ -10,6 +10,10 @@ gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
+# these gems are for users profile pic
+gem 'carrierwave'
+gem 'mini_magick'
+
 gem 'email_validator'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
