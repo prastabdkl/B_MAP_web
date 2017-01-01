@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161224121258) do
+ActiveRecord::Schema.define(version: 20161229080149) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -21,11 +21,16 @@ ActiveRecord::Schema.define(version: 20161224121258) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "is_admin",          default: false
-    t.boolean  "email_confirmed",   default: false
-    t.string   "confirm_token"
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"
+    t.string   "address"
+    t.string   "bank_name"
+    t.string   "account_number"
+    t.string   "nationality"
+    t.string   "mobile"
+    t.string   "home"
+    t.string   "work"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
