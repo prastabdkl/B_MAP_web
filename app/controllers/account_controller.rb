@@ -3,18 +3,26 @@ class AccountController < ApplicationController
     @account = Account.new
   end
 
+  def index
+    redirect_to root_url
+  end
+
   def edit
     @account = Account.find(params[:id])
-    render 'edit'
+    redirect_to @account.user unless (current_user.is_admin)
   end
 
   def update
     @account = Account.find(params[:id])
-    if @account.update_attributes(user_params)
-      flash[:success] = "Account updated successfully"
-      redirect_to @account.user
+    if current_user.is_admin?
+      if @account.update_attributes(user_params)
+        flash[:success] = "Account updated successfully"
+        redirect_to @account.user
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      render root_url
     end
   end
 

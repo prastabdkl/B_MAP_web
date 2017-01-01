@@ -11,9 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20161229080149) do
-=======
 ActiveRecord::Schema.define(version: 20161230101250) do
 
   create_table "accounts", force: :cascade do |t|
@@ -27,7 +24,6 @@ ActiveRecord::Schema.define(version: 20161230101250) do
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id"
->>>>>>> 3e61544297638433e04f9f96c60990c9e54c2edf
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

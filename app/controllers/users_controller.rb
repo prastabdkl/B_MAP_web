@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    redirect_to root_url and return unless true
+    redirect_to root_url and return unless (current_user.is_admin? || current_user.id == @user.id)
     if current_user.nil?
       redirect_to root_url
     end
@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    redirect_to root_url and return unless (current_user.is_admin?)
     @user = User.where(activated: true).paginate(page: params[:page])
   end
 
