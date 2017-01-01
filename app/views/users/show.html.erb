@@ -31,7 +31,7 @@
             </tr>
             <tr>
               <td>A/C no.:</td>
-              <td></td>
+              <td><%= @user.account_number %></td>
             </tr>
             <tr>
               <td>Nationality:</td>
@@ -42,15 +42,15 @@
                 <table class="table table-bordered table-hover">
                   <tr>
                     <td>Mobile:</td>
-                    <td><%= "98********" %></td>
+                    <td><%= @user.mobile %></td>
                   </tr>
                   <tr>
                     <td>Home:</td>
-                    <td></td>
+                    <td><%= @user.home %></td>
                   </tr>
                   <tr>
                     <td>Work:</td>
-                    <td></td>
+                    <td><%= @user.work %></td>
                   </tr>
                 </table>
               </td>
@@ -66,15 +66,15 @@
           <table class="table table-hover table-bordered">
             <tr>
               <td>Post:</td>
-              <td></td>
+              <td><%= @user.account.post %></td>
             </tr>
             <tr>
               <td>Salary:</td>
-              <td></td>
+              <td><%= @user.account.salary %></td>
             </tr>
             <tr>
               <td>Joining date:</td>
-              <td></td>
+              <td><%= @user.account.joining_date %></td>
             </tr>
             <tr>
               <td>Attendance:</td>
@@ -82,12 +82,17 @@
             </tr>
             <tr>
               <td>Working plan:</td>
-              <td>day/hour based</td>
+              <td><%= @user.account.working_plan %></td>
             </tr>
           </table>
         </div>
+        <% if current_user.is_admin %>
+          <%= link_to "Edit", edit_account_path(@user), class: 'btn btn-success' %>
+        <% end %>
       </div>
     </div>
-    <%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-success' %>
+    <% if current_user == @user %>
+      <%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-success' %>
+    <% end %>
   </div>
 </div>

@@ -13,6 +13,8 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @account = Account.new
+    @user.account = @account
   end
 
   def index
@@ -21,6 +23,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @account = Account.new
+    @user.account = @account
     if @user.save
       UserMailer.account_activation(@user).deliver_now
       flash[:success] = "Please check your email to activate your account"
