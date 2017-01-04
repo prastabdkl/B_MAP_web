@@ -14,6 +14,7 @@ gem 'bootstrap-will_paginate'
 gem 'carrierwave'
 gem 'mini_magick'
 
+gem 'database_cleaner'
 gem 'email_validator'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -66,7 +67,6 @@ group :test do
   gem 'spring-commands-rspec'
   gem 'guard-rspec'
   gem 'cucumber-rails', require: false
-  gem 'database_cleaner'
 end
 
 group :production do

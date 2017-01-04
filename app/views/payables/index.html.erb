@@ -1,0 +1,39 @@
+<h1 class="right center">All payable parties</h1>
+
+<div class="container right center">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to "Add new payable party", new_payable_url, class: 'btn btn-success', style: 'float:left' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Image</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @payable.each do |payable| %>
+            <tr>
+              <td><%= payable.date %></td>
+              <td><%= payable.name %></td>
+              <td><%= payable.description %></td>
+              <td><%= payable.phone_no %></td>
+              <td><%= payable.address %></td>
+              <td><%= payable.img %></td>
+              <td><%= payable.amount %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

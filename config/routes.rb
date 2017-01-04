@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :account
   resources :users
+  resources :payables
+  resources :receivables
   resources :sessions, only: [:new, :create, :destroy]
   resources :account_activations, only: [:edit]
   match '/help', to: 'static_pages#help', via: 'get'

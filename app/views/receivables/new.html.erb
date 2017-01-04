@@ -1,0 +1,35 @@
+<h1 class="right center">New receivable party</h1>
+
+<div class="container right">
+  <div class="row">
+    <div class="span6 offset3">
+      <%= form_for @receivable do |f| %>
+        <div class="well well-md">
+          <%= f.label :date %>
+          <%= f.date_field :date, class: 'form-control' %>
+
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+
+          <%= f.label :description %>
+          <%= f.text_field :description, class: 'form-control' %>
+
+          <%= f.label :phone_no %>
+          <%= f.text_field :phone_no, class: 'form-control' %>
+
+          <%= f.label :address %>
+          <%= f.text_field :address, class: 'form-control' %>
+
+          <%= f.label "receipt image if any" %>
+          <%= f.file_field :img %>
+          <%= f.hidden_field :img %>
+
+          <%= f.label :amount %>
+          <%= f.number_field :amount, class: 'form-control' %>
+
+          <%= f.submit "Create Party", class: 'btn btn-large btn-warning' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
