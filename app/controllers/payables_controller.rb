@@ -13,7 +13,7 @@ class PayablesController < ApplicationController
     @payable = current_user.payables.build(payable_params)
     if @payable.save
       flash[:success] = "Party successfully created"
-      debugger
+      #debugger
       redirect_to action: "index"
     else
       render 'new'
@@ -25,13 +25,19 @@ class PayablesController < ApplicationController
   end
 
   def update
-    @payable = Payable.find(params[:user_id])
+    @payable = Payable.find(params[:id])
     if @payable.update_attributes(payable_params)
       flash[:success] = "Payable Party successfully updated"
-      render payables
+      redirect_to action: "index"
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    Payable.find(params[:id]).destroy
+    flash[:success] = "Party deleted"
+    redirect_to action: "index"
   end
 
   private
