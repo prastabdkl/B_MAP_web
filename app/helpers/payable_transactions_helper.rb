@@ -1,0 +1,2 @@
+module PayableTransactionsHelper
+end

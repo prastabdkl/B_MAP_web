@@ -29,14 +29,14 @@
           <% @receivable.each do |receivable| %>
             <tr>
               <td><%= receivable.date %></td>
-              <td><%= receivable.name %></td>
+              <td><%= link_to receivable.name, receivable_transactions_url(receive_id: receivable.id) %></td>
               <td><%= receivable.description %></td>
               <td><%= receivable.phone_no %></td>
               <td><%= receivable.address %></td>
               <td><%= receivable.img %></td>
               <td><%= receivable.amount %></td>
               <td><%= link_to "Edit", edit_receivable_url(receivable), class: 'btn btn-success' %></td>
-              <td><%= link_to "Add transaction", '#', class: 'btn btn-warning' %></td>
+              <td><%= link_to "Add transaction", new_receivable_transaction_url(:receive_id => receivable.id), class: 'btn btn-warning' %></td>
               <td><%= link_to receivable, class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?"}, style: "float: right" do %>
                 <span class="glyphicon glyphicon-remove"></span> Delete party
               <% end %></td>

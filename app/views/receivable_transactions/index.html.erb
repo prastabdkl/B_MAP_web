@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="right center">All transactions</h1>
+
+  <div class="row right">
+    <div class="col-xs-12">
+      <ul>
+        <% @receivable_transaction.each do |receivable_transaction| %>
+          <li>
+            <%= receivable_transaction.cash_type %>,
+            <%= receivable_transaction.date %>,
+            <%= receivable_transaction.amount %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

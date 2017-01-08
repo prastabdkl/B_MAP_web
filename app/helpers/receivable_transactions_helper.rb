@@ -1,0 +1,2 @@
+module ReceivableTransactionsHelper
+end

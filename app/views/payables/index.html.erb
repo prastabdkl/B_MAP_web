@@ -27,17 +27,18 @@
           <% @payable.each do |payable| %>
             <tr>
               <td><%= payable.date %></td>
-              <td><%= payable.name %></td>
+              <td><%= link_to payable.name, payable_transactions_url(:pay_id => payable.id) %></td>
               <td><%= payable.description %></td>
               <td><%= payable.phone_no %></td>
               <td><%= payable.address %></td>
               <td><%= payable.img %></td>
               <td><%= payable.amount %></td>
               <td><%= link_to "Edit", edit_payable_url(payable), class: 'btn btn-success' %></td>
-              <td><%= link_to "Add transaction", '#', class: 'btn btn-warning' %></td>
+              <td><%= link_to "Add transaction", new_payable_transaction_url(:pay_id => payable.id), class: 'btn btn-warning' %></td>
               <td><%= link_to payable, class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?"}, style: "float: right" do %>
                 <span class="glyphicon glyphicon-remove"></span> Delete party
               <% end %></td>
+              <td><%= payable.id %></td>
             </tr>
           <% end %>
         </tbody>

@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="center right">Add Transaction</h1>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <%= form_for(@receivable_transaction) do |f| %>
+        <div class="well well-md">
+          <%= f.select :cash_type, ['Cash In', 'Cash Out'] %>
+          <%= hidden_field_tag "receive_id", params[:receive_id] %>
+
+          <%= f.label :date %>
+          <%= f.date_field :date, class: 'form-control' %>
+
+          <%= f.label :amount %>
+          <%= f.number_field :amount, class: 'form-control' %>
+
+          <%= f.submit "Add transaction", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
