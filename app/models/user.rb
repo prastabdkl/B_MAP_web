@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   has_one :account, dependent: :destroy
-  has_many :payables, dependent: :destroy
-  has_many :receivables, dependent: :destroy
+  has_many :capitals, dependent: :destroy
   before_save {self.email = self.email.downcase}
   before_create :create_remember_token
   before_create :create_activation_digest

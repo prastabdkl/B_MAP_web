@@ -1,19 +1,18 @@
 Rails.application.routes.draw do
   resources :account
   resources :users
-  resources :payables
-  resources :receivables
-  resources :payable_transactions
-  resources :receivable_transactions
   resources :sessions, only: [:new, :create, :destroy]
   resources :account_activations, only: [:edit]
+  resources :capitals
+  resources :transactions
   match '/help', to: 'static_pages#help', via: 'get'
   match '/signup', to: 'users#new', via: 'get'
   match '/login', to: 'sessions#new', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'delete'
   root 'static_pages#home'
 
-  # The priority is based upon order of creation: first created -> highest priority.
+  # The priority is based upon order of creation: first created -> highest prior
+  # ity.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
@@ -25,7 +24,8 @@ Rails.application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
+  # Example resource route (maps HTTP verbs to controller actions automatically)
+  # :
   #   resources :products
 
   # Example resource route with options:

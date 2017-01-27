@@ -1,0 +1,36 @@
+<div class="container">
+  <h1 class="center right">All transactions</h1>
+
+  <div class="row right">
+    <div class="col-xs-12">
+      <table class="table table-bordered">
+        <thead>
+          <td> </td>
+          <td>Date</td>
+          <td>Amount</td>
+          <td> </td>
+        </thead>
+        <tbody>
+          <% @transaction.each do |transaction| %>
+            <tr>
+              <% if transaction.cash_type == "Cash In" %>
+                <td><%= transaction.cash_type %></td>
+              <% else %>
+                <td> </td>
+              <% end %>
+              <td><%= transaction.date %></td>
+              <td><%= transaction.amount %></td>
+              <% unless transaction.cash_type == "Cash In" %>
+                <td><%= transaction.cash_type %></td>
+              <% else %>
+                <td> </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      Amount Remaining: <%= Capital.find_by_id(@transaction.first.capital_id).total_amount %>
+    </div>
+  </div>
+</div>

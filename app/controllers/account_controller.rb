@@ -1,3 +1,4 @@
+# model for providing admin to manage users account
 class AccountController < ApplicationController
   def new
     @account = Account.new
@@ -9,14 +10,14 @@ class AccountController < ApplicationController
 
   def edit
     @account = Account.find(params[:id])
-    redirect_to @account.user unless (current_user.is_admin)
+    redirect_to @account.user unless current_user.is_admin
   end
 
   def update
     @account = Account.find(params[:id])
     if current_user.is_admin?
       if @account.update_attributes(user_params)
-        flash[:success] = "Account updated successfully"
+        flash[:success] = 'Account updated successfully'
         redirect_to @account.user
       else
         render 'edit'
@@ -27,7 +28,11 @@ class AccountController < ApplicationController
   end
 
   private
+
   def user_params
-    params.require(:account).permit(:post, :salary, :joining_date, :working_plan)
+    params.require(:account).permit(:post,
+                                    :salary,
+                                    :joining_date,
+                                    :working_plan)
   end
 end

@@ -1,0 +1,45 @@
+<h1 class="right center">All <%= params[:capi_type] %> parties</h1>
+
+<div class="container right center">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to "Add new #{params[:capi_type]} party", new_capital_url(:capi_type => params[:capi_type]), class: 'btn btn-primary', style: 'float:left' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Amount</th>
+            <th>Edit</th>
+            <th>Add transaction</th>
+            <th>Delete party</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @capital.each do |capital| %>
+            <tr>
+              <td><%= link_to capital.name, transactions_url(:cap_id => capital.id) %></td>
+              <td><%= capital.description %></td>
+              <td><%= capital.phone_no %></td>
+              <td><%= capital.address %></td>
+              <td><%= capital.total_amount %></td>
+              <td><%= link_to "Edit", edit_capital_url(capital), class: 'btn btn-success' %></td>
+              <td><%= link_to "Add transaction", new_transaction_url(:cap_id => capital.id), class: 'btn btn-warning' %></td>
+              <td><%= link_to capital, class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?"}, style: "float: right" do %>
+                <span class="glyphicon glyphicon-remove"></span> Delete party
+              <% end %></td>
+              <td><%= capital.id %></td>
+              <td><%= capital.capital_type %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

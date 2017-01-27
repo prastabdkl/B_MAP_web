@@ -1,3 +1,4 @@
+# controller for handeling users login
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    redirect_to root_url and return unless (current_user.is_admin?)
+    redirect_to root_url and return unless current_user.is_admin?
     @user = User.where(activated: true).paginate(page: params[:page])
   end
 
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
     @user.account = @account
     if @user.save
       UserMailer.account_activation(@user).deliver_now
-      flash[:success] = "Please check your email to activate your account"
+      flash[:success] = 'Please check your email to activate your account'
       redirect_to root_url
     else
       render 'new'
@@ -42,7 +43,7 @@ class UsersController < ApplicationController
   def update
     # @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile Updated"
+      flash[:success] = 'Profile Updated'
       redirect_to @user
     else
       render 'edit'
@@ -51,28 +52,41 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = 'User deleted'
     redirect_to users_url
   end
 
   private
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :is_admin, :image, :address, :bank_name, :account_number, :nationality, :mobile, :home, :work)
-    end
 
-    def logged_in_user
-      unless logged_in?
-        store_location
-        redirect_to login_url, notice: "Please log in"
-      end
-    end
+  def user_params
+    params.require(:user).permit(:name,
+                                 :email,
+                                 :password,
+                                 :password_confirmation,
+                                 :is_admin,
+                                 :image,
+                                 :address,
+                                 :bank_name,
+                                 :account_number,
+                                 :nationality,
+                                 :mobile,
+                                 :home,
+                                 :work)
+  end
 
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+  def logged_in_user
+    unless logged_in?
+      store_location
+      redirect_to login_url, notice: 'Please log in'
     end
+  end
 
-    def admin_user
-      redirect_to(root_url) unless current_user.is_admin?
-    end
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.is_admin?
+  end
 end
