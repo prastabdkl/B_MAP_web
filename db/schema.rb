@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170123102418) do
   add_index "capitals", ["user_id"], name: "index_capitals_on_user_id"
 
   create_table "transactions", force: :cascade do |t|
-    t.date     "date",                               default: '2017-01-26'
+    t.date     "date",                               default: '2017-01-28'
     t.decimal  "amount",     precision: 8, scale: 2
     t.string   "cash_type"
     t.integer  "capital_id"
