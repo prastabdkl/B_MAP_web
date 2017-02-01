@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   # for api
   namespace :api do
     namespace :v1, defaults: { format: :json} do
+      match '/sign-in', to: 'sessions#create', via: 'post'
+      match '/sign-out', to: 'sessions#destroy', via: 'delete'
       resources :users, only: [:index, :create, :show, :update, :destroy]
       resources :account, only: [:update]
       resources :capitals, only: [:create, :update, :index, :destroy]

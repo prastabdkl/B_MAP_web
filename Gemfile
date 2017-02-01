@@ -36,6 +36,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'active_model_serializers'
 gem 'active_hash_relation'
+gem 'pundit'
+gem 'has_secure_token'
 
 
 # Use Unicorn as the app server
