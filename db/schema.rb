@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170201142151) do
   add_index "capitals", ["user_id"], name: "index_capitals_on_user_id"
 
   create_table "transactions", force: :cascade do |t|
-    t.date     "date",                               default: '2017-01-28'
+    t.date     "date",                               default: '2017-02-02'
     t.decimal  "amount",     precision: 8, scale: 2
     t.string   "cash_type"
     t.integer  "capital_id"
@@ -50,7 +50,30 @@ ActiveRecord::Schema.define(version: 20170201142151) do
 
   add_index "transactions", ["capital_id"], name: "index_transactions_on_capital_id"
 
-# Could not dump table "users" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "password_digest"
+    t.string   "remember_token"
+    t.boolean  "is_admin",          default: false
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.string   "address"
+    t.string   "bank_name"
+    t.string   "account_number"
+    t.string   "nationality"
+    t.string   "mobile"
+    t.string   "home"
+    t.string   "work"
+    t.string   "image"
+    t.string   "auth_token"
+  end
+
+  add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

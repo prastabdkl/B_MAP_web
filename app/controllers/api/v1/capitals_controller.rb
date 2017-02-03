@@ -1,10 +1,6 @@
 class Api::V1::CapitalsController < Api::V1::BaseController
-  before_filter :authenticate_token
-  before_filter :authenticate_user!
-
+  before_filter :authenticate_request
   def index
-    user = authenticate_token
-    debugger
     capitals = Capital.all
 
     capitals = apply_filters(capitals, params)

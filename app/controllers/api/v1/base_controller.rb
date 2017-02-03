@@ -13,6 +13,11 @@ class Api::V1::BaseController < ApplicationController
   attr_accessor :current_user
   protected
 
+	def auth_request
+		@current_user = Api::V1::ApplicationController::AuthorizedApiRequest.call(request.headers).result
+		render json: { error: 'Not Authorized' }, status: 401 unless @current_user
+	end
+
 	def require_login
 		authenticate_token ||= render_unauthorized("Access denied")
 	end
@@ -28,6 +33,13 @@ class Api::V1::BaseController < ApplicationController
 		render json: errors, status: :unauthorized
 	end
 
+  def destroy_session
+    request.session_options[:skip] = true
+	end
+
+	def not_found
+		return api_error(status: 404, errors: 'Not found')
+	end
 	private
 
 	def authenticate_token
@@ -40,14 +52,6 @@ class Api::V1::BaseController < ApplicationController
 				user
 		end
 	end
-
-  def destroy_session
-    request.session_options[:skip] = true
-  end
-
-  def not_found!
-    return api_error(status: 404, errors: 'Not Found')
-  end
 
   def unauthenticated!
     response.headers['WWW-Authenticate'] = "Token realm=Application"

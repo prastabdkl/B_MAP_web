@@ -33,12 +33,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt-ruby'
 gem 'active_model_serializers'
 gem 'active_hash_relation'
 gem 'pundit'
-gem 'has_secure_token'
-
+gem 'jwt'
+gem 'simple_command'
+gem 'responders'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

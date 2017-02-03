@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, email: true, uniqueness: { case_sensitive: false}
   validates :password, presence: true, length: { minimum: 6}
   has_secure_password
-	has_secure_token :auth_token
 
 
   def User.new_remember_token
@@ -45,13 +44,12 @@ class User < ActiveRecord::Base
     update_columns(activated: true, activated_at: Time.zone.now)
   end
 
-=begin
 	def generate_auth_token
-		token = SecureRandom.hex
-		self.update_columns(auth_token: token)
-		token
+		loop do
+			self.auth_token = SecureRandom.base64(64)
+			break unless User.find_by(auth_token: auth_token)
+		end
 	end
-=end
 
   private
     def create_remember_token

@@ -19,7 +19,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
-    redirect_to root_url
+    user = User.find_by(auth_token: params[:id])
+    user.generate_auth_token
+    user.save
+    head 204
   end
 end
