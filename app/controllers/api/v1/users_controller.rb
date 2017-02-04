@@ -10,14 +10,14 @@ class Api::V1::UsersController < Api::V1::BaseController
 		unless user.nil?
     	render json: user
 		else
-			render json: { error: "Access denied"}, status: 404
+			render json: { error: "Access denied"}, status: 401
 		end
   end
 
   def index
     users = User.all if curr_user.is_admin
 		if users.nil?
-			render json: { error: "Access denied"}, status: 404
+			render json: { error: "Access denied"}, status: 401
 		else
 			users = apply_filters(users, params) # for filtering according to params value
 		  users = paginate(users)

@@ -20,13 +20,8 @@ class UsersController < ApplicationController
 
   def index
     @user = User.all
-    respond_to do |format|
-      format.html {
-        redirect_to root_url and return unless current_user.is_admin?
-        @user = User.where(activated: true).paginate(page: params[:page])
-      }
-      format.json { render json: @user}
-    end
+    redirect_to root_url and return unless current_user.is_admin?
+    @user = User.where(activated: true).paginate(page: params[:page])
   end
 
   def create
