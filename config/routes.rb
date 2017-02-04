@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :account
+  resources :account, only: [:new, :create, :edit, :update, :destroy]
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :account_activations, only: [:edit]

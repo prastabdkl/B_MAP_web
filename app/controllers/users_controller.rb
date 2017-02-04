@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    redirect_to root_url and return unless (current_user.is_admin? || current_user.id == @user.id)
+    redirect_to root_url and return unless (current_user.is_admin || current_user.id == @user.id)
     if current_user.nil?
       redirect_to root_url
     end

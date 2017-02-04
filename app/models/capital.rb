@@ -2,5 +2,6 @@
 class Capital < ActiveRecord::Base
   belongs_to :user
   has_many :transactions, dependent: :destroy
-  validates_presence_of :user_id
+  validates :name, presence: true, length: { maximum: 50}
+  validates :total_amount, presence: true
 end
