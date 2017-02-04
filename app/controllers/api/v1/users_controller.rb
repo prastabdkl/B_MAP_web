@@ -5,16 +5,19 @@ class Api::V1::UsersController < Api::V1::BaseController
 	respond_to :json
 
   def show
-    user = User.find(params[:id]) if params[:id] == curr_user.id || curr_user.is_admin
-    # authorize user
+    user = User.find(params[:id]) if params[:id].to_i == curr_user.id || curr_user.is_admin
 
-    render json: user
+		unless user.nil?
+    	render json: user
+		else
+			render json: { error: "Access denied"}, status: 404
+		end
   end
 
   def index
     users = User.all if curr_user.is_admin
 		if users.nil?
-			render json: { error: "You don't have permission to access"}, status: 404
+			render json: { error: "Access denied"}, status: 404
 		else
 			users = apply_filters(users, params) # for filtering according to params value
 		  users = paginate(users)
