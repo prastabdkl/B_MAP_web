@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AccountsController, type: :controller do
+RSpec.describe AccountController, type: :controller do
 
   describe "GET #edit" do
     it "returns http success" do
