@@ -8,7 +8,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     user = User.find(params[:id]) if params[:id].to_i == curr_user.id || curr_user.is_admin
 
 		unless user.nil?
-    	render json: user
+			render json: user, status: 200
 		else
 			render json: { error: "Access denied"}, status: 401
 		end
@@ -22,7 +22,7 @@ class Api::V1::UsersController < Api::V1::BaseController
 			users = apply_filters(users, params) # for filtering according to params value
 		  users = paginate(users)
 		  users = policy_scope(users)
-		  render json: users, each_serializer: Api::V1::UserSerializer, root: 'users', meta: meta_attributes(users)
+		  render json: users, each_serializer: Api::V1::UserSerializer, root: true, meta: meta_attributes(users)
 		end
   end
 

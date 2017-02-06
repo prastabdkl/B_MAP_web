@@ -1,7 +1,7 @@
-class Api::V1::UserSerializer < Api::V1::BaseSerializer
+class Api::V1::UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :is_admin, :activated, :created_at, :activated,
              :address, :bank_name, :account_number, :nationality, :mobile,
-             :home, :work, :image, :auth_token, :password_digest
+             :home, :work, :image
 
   has_one :account
   has_many :capitals

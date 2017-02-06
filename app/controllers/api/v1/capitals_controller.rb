@@ -5,7 +5,7 @@ class Api::V1::CapitalsController < Api::V1::BaseController
 
     capitals = apply_filters(capitals, params)
 
-    render json: capitals.to_json, each_serializer: Api::V1::CapitalSerializer,
-                          root: 'capitals'
+    render json: capitals, each_serializer: Api::V1::CapitalSerializer,
+                          root: 'capital'
   end
 end
