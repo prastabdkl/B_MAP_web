@@ -4,7 +4,7 @@ class Api::V1::BaseController < ApplicationController
 
   # Prevent CSRF accack by raising an exception
   # for api with token authentication we may user :null_session instead
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception
   before_action :destroy_session
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found!
