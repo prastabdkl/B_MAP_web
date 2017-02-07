@@ -1,4 +1,7 @@
 class Api::V1::AccountController < Api::V1::BaseController
+  before_action :authenticate_request, only: [:show, :update]
+  skip_before_action :verify_authenticity_token
+
   def show
     account = Account.find(params[:id])
 
@@ -21,6 +24,6 @@ class Api::V1::AccountController < Api::V1::BaseController
 
   private
   def account_params
-    params.require(:account).permit(:post, :salary, :joining_date, :working_plan)
+    params.permit(:post, :salary, :joining_date, :working_plan)
   end
 end

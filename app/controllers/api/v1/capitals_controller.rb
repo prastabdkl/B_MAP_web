@@ -1,5 +1,6 @@
 class Api::V1::CapitalsController < Api::V1::BaseController
-  before_filter :authenticate_request
+  before_action :authenticate_request, only: :index
+  skip_before_action :verify_authenticity_token
   def index
     capitals = Capital.all
 
