@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 			post 'authenticate', to: 'authentication#authenticate'
       resources :sessions, only: [:create, :destroy]
       resources :users, only: [:index, :create, :show, :update, :destroy]
-      resources :account, only: [:update]
+      resources :account, only: [:show, :update]
       resources :capitals, only: [:create, :update, :index, :destroy]
       resources :transactions, only: [:create, :index]
     end
