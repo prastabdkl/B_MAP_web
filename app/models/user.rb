@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :capitals, dependent: :destroy
   before_save {self.email = self.email.downcase}
   before_create :create_remember_token
+  before_create :create_activation_digest
 
   mount_uploader :image, ImageUploader
   validates :name, presence: true, length: { maximum: 50}
