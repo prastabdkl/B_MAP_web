@@ -5,4 +5,5 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :cash_type
   validates_presence_of :amount
   validates :date, presence: true
+  validates :capital_id, presence: true
 end
