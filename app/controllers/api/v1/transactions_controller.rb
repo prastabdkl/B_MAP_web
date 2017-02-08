@@ -13,8 +13,10 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   end
 
   def create
+    # remember to send capital_id as parameter while calling create action
     transactions = Transaction.all
-    transaction = Transaction.new(transaction_params)
+    capital = Capital.find(params[:capital_id])
+    transaction = capital.transactions.new(transaction_params)
 
     if transaction.save
       render json: transactions, status: 201
