@@ -19,6 +19,13 @@ class Api::V1::TransactionsController < Api::V1::BaseController
     transaction = capital.transactions.new(transaction_params)
 
     if transaction.save
+      if transaction.cash_type == 'Cash In'
+        capital.update_attribute(:total_amount, capital.total_amount += transaction.amount.to_d) if capital.capital_type == "Payable"
+        capital.update_attribute(:total_amount, capital.total_amount -= transaction.amount.to_d) if capital.capital_type == "Receivable"
+      else
+        capital.update_attribute(:total_amount, capital.total_amount -= transaction.amount.to_d) if capital.capital_type == "Payable"
+        capital.update_attribute(:total_amount, capital.total_amount += transaction.amount.to_d) if capital.capital_type == "Receivable"
+      end
       render json: transactions, status: 201
     else
       render json: { errors: "transaction.errors"}, status: 406
