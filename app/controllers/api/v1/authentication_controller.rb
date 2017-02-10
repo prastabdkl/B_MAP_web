@@ -3,9 +3,10 @@ class Api::V1::AuthenticationController < ApplicationController
 
 	def authenticate
 		command = AuthenticateUser.call(params[:email], params[:password])
+    u = User.find_by_email(params[:email])
 
 		if command.success?
-			render json: { auth_token: command.result }
+			render json: { auth_token: command.result, req_id: u.id }
 		else
 			render json: { error: command.errors }, status: 401
 		end
