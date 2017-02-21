@@ -26,9 +26,36 @@
               <td><%= f.label 'Full' %></td>
             </tr>
           </table>
-        </div>
 
-        <%= f.submit "Update account", class: 'btn btn-large' %>
+          <%= f.label "Addition" %><br>
+          <%= f.label "Holiday" %>
+          <%= f.number_field :addition_holiday, class: "form-control" %>
+
+          <%= f.label "Overtime" %>
+          <%= f.number_field :addition_overtime, class: "form-control" %>
+
+          <%= f.label "Miscellaneous Addition" %>
+          <%= f.number_field :addition_miscellaneous, class: "form-control" %>
+
+          <%= f.label "Deduction" %><br>
+          <%= f.label "Loan" %>
+          <%= f.number_field :deduction_loan, class: "form-control" %>
+
+          <%= f.label "Late" %>
+          <%= f.number_field :deduction_late, class: "form-control" %>
+
+          <%= f.label "Miscellaneous Deduction" %>
+          <%= f.number_field :deduction_miscellaneous, class: "form-control" %>
+
+          <%= f.label "Company Deduction" %><br>
+          <%= f.label "Absent" %>
+          <%= f.number_field :company_deduction_absent, class: "form-control" %>
+
+          <%= f.label "WTAX(%)" %>
+          <%= f.number_field :company_deduction_wtax, class: "form-control" %>
+
+          <%= f.submit "Update account", class: 'btn btn-large' %>
+        </div>
       <% end %>
     </div>
   </div>

@@ -11,16 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201142151) do
+ActiveRecord::Schema.define(version: 20170221011447) do
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "post",                                 default: ""
-    t.decimal  "salary",       precision: 8, scale: 2, default: 0.0
+    t.string   "post",                                             default: ""
+    t.decimal  "salary",                   precision: 8, scale: 2, default: 0.0
     t.datetime "joining_date"
     t.string   "working_plan"
     t.integer  "user_id"
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
+    t.decimal  "addition_holiday",         precision: 8, scale: 2, default: 0.0
+    t.decimal  "addition_overtime",        precision: 8, scale: 2, default: 0.0
+    t.decimal  "addition_miscellaneous",   precision: 8, scale: 2, default: 0.0
+    t.decimal  "deduction_loan",           precision: 8, scale: 2, default: 0.0
+    t.decimal  "deduction_late",           precision: 8, scale: 2, default: 0.0
+    t.decimal  "deduction_miscellaneous",  precision: 8, scale: 2, default: 0.0
+    t.decimal  "company_deduction_absent", precision: 8, scale: 2, default: 0.0
+    t.decimal  "company_deduction_wtax",   precision: 8, scale: 2, default: 10.0
+    t.decimal  "net_total_addition",       precision: 8, scale: 2, default: 0.0
+    t.decimal  "net_total_deduction",      precision: 8, scale: 2, default: 0.0
+    t.decimal  "net_pay",                  precision: 8, scale: 2
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id"

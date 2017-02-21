@@ -5,6 +5,7 @@
     <%= @user.name %>
   </h1>
 
+<!-- for personal profile -->
   <div class="well">
     <div class="row">
       <div class="col-md-6">
@@ -57,8 +58,36 @@
             </tr>
           </table>
         </div>
+        <% if current_user == @user %>
+          <%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-success' %>
+        <% end %>
+
+        <br>
+        <br>
+        <!-- for net deduction, addition and pay information -->
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            Net financial information
+          </div>
+          <table class="table table-hover table-bordered">
+            <tr>
+              <td>Total addition</td>
+              <td><%= @user.account.net_total_addition %></td>
+            </tr>
+            <tr>
+              <td>Total deduction</td>
+              <td><%= @user.account.net_total_deduction %></td>
+            </tr>
+            <tr>
+              <td>Net Pay</td>
+              <td><%= @user.account.net_pay %></td>
+            </tr>
+          </table>
+        </div>
       </div>
+
       <div class="col-md-6">
+      <!-- for Account detail information -->
         <div class="panel panel-success">
           <div class="panel-heading">
             Account details.
@@ -86,13 +115,76 @@
             </tr>
           </table>
         </div>
+
+        <br>
+        <!-- for addition of salary information -->
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            Addition
+          </div>
+          <table class="table table-hover table-bordered">
+            <tr>
+              <td>Holiday:</td>
+              <td><%= @user.account.addition_holiday %></td>
+            </tr>
+            <tr>
+              <td>Overtime</td>
+              <td><%= @user.account.addition_overtime %></td>
+            </tr>
+            <tr>
+              <td>Miscellaneous</td>
+              <td><%= @user.account.addition_miscellaneous %></td>
+            </tr>
+          </table>
+        </div>
+
+        <br>
+        <!-- for deduction of salary information -->
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            Deduction
+          </div>
+          <table class="table table-hover table-bordered">
+            <tr>
+              <td>Loan</td>
+              <td><%= @user.account.deduction_loan %></td>
+            </tr>
+            <tr>
+              <td>Late</td>
+              <td><%= @user.account.deduction_late %></td>
+            </tr>
+            <tr>
+              <td>Miscellaneous</td>
+              <td><%= @user.account.deduction_miscellaneous %></td>
+            </tr>
+          </table>
+        </div>
+
+        <br>
+        <!-- for deduction of salary according to company TOS -->
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            Company Deduction
+          </div>
+          <table class="table table-hover table-bordered">
+            <tr>
+              <td>Absent</td>
+              <td><%= @user.account.company_deduction_absent %></td>
+            </tr>
+            <tr>
+              <td>WTAX</td>
+              <td><%=  "#{@user.account.company_deduction_wtax} %"%></td>
+            </tr>
+            <tr>
+              <td>Miscellaneous</td>
+              <td><%= @user.account.deduction_miscellaneous %></td>
+            </tr>
+          </table>
+        </div>
         <% if current_user.is_admin %>
           <%= link_to "Edit", edit_account_path(@user), class: 'btn btn-success' %>
         <% end %>
       </div>
     </div>
-    <% if current_user == @user %>
-      <%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-success' %>
-    <% end %>
   </div>
 </div>

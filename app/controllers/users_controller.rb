@@ -15,7 +15,10 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @account = Account.new
+    @account = Account.new()
+    @account.update_attribute(:net_total_addition, @account.addition_holiday + @account.addition_overtime + @account.addition_miscellaneous)
+    @account.update_attribute(:net_total_deduction, @account.company_deduction_absent + (@account.company_deduction_wtax * @account.salary / 100) + @account.deduction_late + @account.deduction_loan + @account.deduction_miscellaneous)
+    @account.update_attribute(:net_pay, @account.salary + @account.net_total_addition - @account.net_total_deduction)
     @user.account = @account
   end
 

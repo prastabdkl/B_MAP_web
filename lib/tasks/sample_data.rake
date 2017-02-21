@@ -18,6 +18,9 @@ namespace :db do
                               salary: "50000.00",
                               joining_date: Time.zone.now,
                               working_plan: "full")
+    account.update_attribute(:net_total_addition, account.addition_holiday + account.addition_overtime + account.addition_miscellaneous)
+    account.update_attribute(:net_total_deduction, account.company_deduction_absent + (account.company_deduction_wtax * account.salary / 100) + account.deduction_late + account.deduction_loan + account.deduction_miscellaneous)
+    account.update_attribute(:net_pay, account.salary + account.net_total_addition - account.net_total_deduction)
     admin.account = account
 
     # creating other users
@@ -59,6 +62,9 @@ namespace :db do
                                 salary: salary,
                                 joining_date: joining_date,
                                 working_plan: working_plan)
+      account.update_attribute(:net_total_addition, account.addition_holiday + account.addition_overtime + account.addition_miscellaneous)
+      account.update_attribute(:net_total_deduction, account.company_deduction_absent + (account.company_deduction_wtax * account.salary / 100) + account.deduction_late + account.deduction_loan + account.deduction_miscellaneous)
+      account.update_attribute(:net_pay, account.salary + account.net_total_addition - account.net_total_deduction)
       user.account = account
     end
   end
