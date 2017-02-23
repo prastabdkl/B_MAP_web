@@ -3,7 +3,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   skip_before_action :verify_authenticity_token
 
   def index
-    transactions = Transaction.all
+    transactions = Transaction.where(capital_id: params[:cap_id])
 
     unless transactions.nil?
       render json: transactions, each_serializer: Api::V1::TransactionsSerializer, root: false
