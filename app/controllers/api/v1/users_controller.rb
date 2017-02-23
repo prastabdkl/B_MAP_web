@@ -14,6 +14,23 @@ class Api::V1::UsersController < Api::V1::BaseController
 		end
   end
 
+	def create
+		user = User.new(user_params)
+		account = Account.new
+		user.account = account
+		if user.save
+			if curr_user.is_admin
+				user.update_attribute(:activated, true)
+				user.update_attribute(:activated_at, Time.now)
+				render json: user, status: 201
+			else
+				render json: { error: "Only for admin"}, staus: 406
+			end
+		else
+			render json: { error: user.errors }, status: 406
+		end
+	end
+
   def index
     users = User.all if curr_user.is_admin
 		if users.nil?
