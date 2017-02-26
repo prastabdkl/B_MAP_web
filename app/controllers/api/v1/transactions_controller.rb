@@ -28,7 +28,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
       end
       render json: transactions, status: 201
     else
-      render json: { errors: "transaction.errors"}, status: 406
+      render json: { errors: transaction.errors}, status: 406
     end
   end
 
