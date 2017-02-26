@@ -19,10 +19,10 @@ class Api::V1::UsersController < Api::V1::BaseController
 		if users.nil?
 			render json: { error: "Access denied"}, status: 401
 		else
-			users = apply_filters(users, params) # for filtering according to params value
-		  users = paginate(users)
-		  users = policy_scope(users)
-		  render json: users, each_serializer: Api::V1::UserSerializer, root: true, meta: meta_attributes(users)
+			#users = apply_filters(users, params) # for filtering according to params value
+		  #users = paginate(users)
+		  #users = policy_scope(users)
+		  render json: users, each_serializer: Api::V1::UserSerializer, status: 200 #root: true, meta: meta_attributes(users)
 		end
   end
 

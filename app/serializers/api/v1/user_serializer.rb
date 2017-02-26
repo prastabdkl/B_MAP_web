@@ -4,7 +4,7 @@ class Api::V1::UserSerializer < Api::V1::BaseSerializer
              :home, :work, :image
 
   has_one :account
-  has_many :capitals
+  #has_many :capitals
 
 	def created_at
 		object.created_at.in_time_zone.iso8601 if object.created_at
