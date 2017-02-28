@@ -1,5 +1,5 @@
 class Api::V1::AccountController < Api::V1::BaseController
-  before_action :authenticate_request, only: [:show, :update]
+  before_action :authenticate_request, only: [:show, :update, :get_updated_accounts]
   skip_before_action :verify_authenticity_token
 
   def show

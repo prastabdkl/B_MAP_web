@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::V1::BaseController
 	include ActiveHashRelation
-	before_action :authenticate_request, only: [:show, :index, :update, :destroy]
+	before_action :authenticate_request, only: [:show, :index, :update, :destroy, :get_new_created_users, :get_updated_users]
 	skip_before_action :verify_authenticity_token
 	respond_to :json
 

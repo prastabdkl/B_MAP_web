@@ -1,5 +1,5 @@
 class Api::V1::TransactionsController < Api::V1::BaseController
-  before_action :authenticate_request, only: [:index, :create]
+  before_action :authenticate_request, only: [:index, :create, :get_new_created_transactions]
   skip_before_action :verify_authenticity_token
 
   def index
