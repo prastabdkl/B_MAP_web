@@ -40,7 +40,7 @@ class Api::V1::CapitalsController < Api::V1::BaseController
   end
 
   def get_updated_capitals
-    updated_capitals = Capital.find(updated: true)
+    updated_capitals = Capital.where(updated: true)
     unless updated_capitals.nil?
       render json: updated_capitals, status: 200
     else

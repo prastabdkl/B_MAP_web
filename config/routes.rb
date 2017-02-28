@@ -18,7 +18,7 @@ Rails.application.routes.draw do
         get 'new/users', to: 'users#get_new_created_users'
         get 'new/capitals', to: 'capitals#get_new_created_capitals'
         get 'new/transactions', to: 'transactions#get_new_created_transactions'
-        get 'updated/accounts', to: 'accounts#get_updated_accounts'
+        get 'updated/accounts', to: 'account#get_updated_accounts'
         get 'updated/capitals', to: 'capitals#get_updated_capitals'
         get 'updated/users', to: 'users#get_updated_users'
       post 'authenticate', to: 'authentication#authenticate'
