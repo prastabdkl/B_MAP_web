@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.update_attribute(:new_created, true)
     @account = Account.new
     @user.account = @account
     if @user.save
@@ -47,6 +48,7 @@ class UsersController < ApplicationController
 
   def update
     # @user = User.find(params[:id])
+    @user.update_attribute(:updated, true)
     if @user.update_attributes(user_params)
       flash[:success] = 'Profile Updated'
       redirect_to @user

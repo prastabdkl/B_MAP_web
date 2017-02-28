@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221011447) do
+ActiveRecord::Schema.define(version: 20170228044808) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "post",                                             default: ""
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20170221011447) do
     t.datetime "joining_date"
     t.string   "working_plan"
     t.integer  "user_id"
-    t.datetime "created_at",                                                      null: false
-    t.datetime "updated_at",                                                      null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.decimal  "addition_holiday",         precision: 8, scale: 2, default: 0.0
     t.decimal  "addition_overtime",        precision: 8, scale: 2, default: 0.0
     t.decimal  "addition_miscellaneous",   precision: 8, scale: 2, default: 0.0
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20170221011447) do
     t.decimal  "net_total_addition",       precision: 8, scale: 2, default: 0.0
     t.decimal  "net_total_deduction",      precision: 8, scale: 2, default: 0.0
     t.decimal  "net_pay",                  precision: 8, scale: 2
+    t.boolean  "new_created",                                      default: false
+    t.boolean  "updated",                                          default: false
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id"
@@ -44,71 +46,23 @@ ActiveRecord::Schema.define(version: 20170221011447) do
     t.decimal  "total_amount", precision: 8, scale: 2
     t.string   "capital_type"
     t.integer  "user_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.boolean  "new_created",                          default: false
+    t.boolean  "updated",                              default: false
   end
 
   add_index "capitals", ["user_id"], name: "index_capitals_on_user_id"
 
-  create_table "payable_transactions", force: :cascade do |t|
-    t.date     "date"
-    t.decimal  "amount",     precision: 8, scale: 2
-    t.string   "cash_type"
-    t.integer  "payable_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
-
-  add_index "payable_transactions", ["payable_id"], name: "index_payable_transactions_on_payable_id"
-
-  create_table "payables", force: :cascade do |t|
-    t.date     "date"
-    t.string   "name"
-    t.text     "description"
-    t.string   "phone_no"
-    t.string   "address"
-    t.string   "img"
-    t.decimal  "amount",      precision: 8, scale: 2
-    t.integer  "user_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
-  add_index "payables", ["user_id"], name: "index_payables_on_user_id"
-
-  create_table "receivable_transactions", force: :cascade do |t|
-    t.date     "date"
-    t.decimal  "amount",        precision: 8, scale: 2
-    t.string   "cash_type"
-    t.integer  "receivable_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-  end
-
-  add_index "receivable_transactions", ["receivable_id"], name: "index_receivable_transactions_on_receivable_id"
-
-  create_table "receivables", force: :cascade do |t|
-    t.date     "date"
-    t.string   "name"
-    t.text     "description"
-    t.string   "phone_no"
-    t.string   "address"
-    t.string   "img"
-    t.decimal  "amount",      precision: 8, scale: 2
-    t.integer  "user_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
-  add_index "receivables", ["user_id"], name: "index_receivables_on_user_id"
-
   create_table "transactions", force: :cascade do |t|
-    t.date     "date",                               default: '2017-01-27'
-    t.decimal  "amount",     precision: 8, scale: 2
+    t.date     "date",                                default: '2017-02-28'
+    t.decimal  "amount",      precision: 8, scale: 2
     t.string   "cash_type"
     t.integer  "capital_id"
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
+    t.boolean  "new_created",                         default: false
+    t.boolean  "updated",                             default: false
   end
 
   add_index "transactions", ["capital_id"], name: "index_transactions_on_capital_id"
@@ -133,6 +87,8 @@ ActiveRecord::Schema.define(version: 20170221011447) do
     t.string   "work"
     t.string   "image"
     t.string   "auth_token"
+    t.boolean  "updated",           default: false
+    t.boolean  "new_created",       default: false
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true

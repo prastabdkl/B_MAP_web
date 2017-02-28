@@ -25,6 +25,15 @@ class Api::V1::AccountController < Api::V1::BaseController
     end
   end
 
+  def get_updated_accounts
+    updated_accounts = Account.where(updated: true)
+    unless updated_accounts.nil?
+      render json: updated_accounts, status: 200
+    else
+      render json: [], status: 200
+    end
+  end
+
   private
   def account_params
     params.permit(:post, :salary, :joining_date, :working_plan, :addition_holiday,

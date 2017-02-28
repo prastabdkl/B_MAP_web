@@ -33,7 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'active_model_serializers'
 gem 'active_hash_relation'
 gem 'pundit'

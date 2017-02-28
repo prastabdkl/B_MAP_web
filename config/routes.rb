@@ -14,9 +14,16 @@ Rails.application.routes.draw do
   # for api
   namespace :api do
     namespace :v1, defaults: { format: :json} do
-			post 'authenticate', to: 'authentication#authenticate'
+        # these routes are used for getting newly created rows in tables
+        get 'new/users', to: 'users#get_new_created_users'
+        get 'new/capitals', to: 'capitals#get_new_created_capitals'
+        get 'new/transactions', to: 'transactions#get_new_created_transactions'
+        get 'updated/accounts', to: 'accounts#get_updated_accounts'
+        get 'updated/capitals', to: 'capitals#get_updated_capitals'
+        get 'updated/users', to: 'users#get_updated_users'
+      post 'authenticate', to: 'authentication#authenticate'
       resources :sessions, only: [:create, :destroy]
-      resources :users, only: [:index, :create, :show, :update, :destroy]
+      resources :users, only: [:index, :create, :show, :update, :destroy,]
       resources :account, only: [:show, :update]
       resources :capitals, only: [:create, :update, :index, :destroy]
       resources :transactions, only: [:create, :index]

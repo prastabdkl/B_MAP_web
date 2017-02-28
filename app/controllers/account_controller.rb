@@ -15,6 +15,7 @@ class AccountController < ApplicationController
 
   def update
     @account = Account.find(params[:id])
+    @account.update_attribute(:updated, true)
     if current_user.is_admin?
       if @account.update_attributes(user_params)
         flash[:success] = 'Account updated successfully'

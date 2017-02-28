@@ -6,7 +6,9 @@ class TransactionsController < ApplicationController
 
   def create
     @this_capital = Capital.find_by(id: params[:cap_id])
+    @this_capital.update_attribute(:updated, true)
     @transaction = @this_capital.transactions.build(transaction_params)
+    @transaction.update_attribute(:new_created, true)
     if @transaction.save
       flash[:success] = 'Transaction information added successfully.'
       # add certain rules for cash in and cash out
@@ -25,7 +27,6 @@ class TransactionsController < ApplicationController
 
   def index
     @transaction = Transaction.where(capital_id: params[:cap_id])
-    debugger
   end
 
   private

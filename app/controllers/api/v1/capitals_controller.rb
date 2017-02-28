@@ -39,6 +39,24 @@ class Api::V1::CapitalsController < Api::V1::BaseController
     head 204
   end
 
+  def get_updated_capitals
+    updated_capitals = Capital.find(updated: true)
+    unless updated_capitals.nil?
+      render json: updated_capitals, status: 200
+    else
+      render json: [], status:200
+    end
+  end
+
+  def get_new_created_capitals
+    new_created_capitals = Capital.where(new_created: true)
+    unless new_created_capitals.nil?
+      render json: new_created_capitals, status: 200
+    else
+      render json: [], status: 200
+    end
+  end
+
   private
 
   def capital_params

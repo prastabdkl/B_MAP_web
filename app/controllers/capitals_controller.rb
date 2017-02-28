@@ -15,6 +15,7 @@ class CapitalsController < ApplicationController
 
   def create
     @capital = current_user.capitals.build(capital_params)
+    @capital.update_attribute(:new_created, true)
     @capital.capital_type = @capital_type
     flash[:success] = 'Party successfully created.'
     if @capital.save
@@ -42,6 +43,7 @@ class CapitalsController < ApplicationController
 
   def update
     @capital = Capital.find(params[:id])
+    @capital.update_attribute(:updated, true)
     if @capital.update_attributes(capital_params)
       flash[:success] = 'Party successfully updated'
       redirect_to capitals_url(capi_type: @capital_type)

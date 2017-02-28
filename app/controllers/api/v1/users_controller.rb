@@ -59,6 +59,24 @@ class Api::V1::UsersController < Api::V1::BaseController
 		head 204
 	end
 
+	def get_new_created_users
+		new_created_users = User.where(new_created: true)
+		unless new_created_users.nil?
+			render json: new_created_users, status: 200
+		else
+			render json: [], status: 200
+		end
+	end
+
+	def get_updated_users
+		updated_users = User.find_by(updated: true)
+		unless updated_users.nil?
+			render json: updated_users, status: 200
+		else
+			render json: [], status: 200
+		end
+	end
+
 	private
 
 	def user_params

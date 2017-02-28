@@ -32,6 +32,15 @@ class Api::V1::TransactionsController < Api::V1::BaseController
     end
   end
 
+  def get_new_created_transactions
+    new_created_transactions = Transaction.where(new_created: true);
+    unless created_transactions.nil?
+      render json: new_created_transactions, status: 200
+    else
+      render json: [], status: 200
+    end
+  end
+
   private
 
   def transaction_params
