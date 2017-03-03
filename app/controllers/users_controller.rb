@@ -30,7 +30,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.update_attribute(:new_created, true)
     @account = Account.new
     @user.account = @account
     if @user.save

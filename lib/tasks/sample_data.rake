@@ -13,18 +13,22 @@ namespace :db do
                          bank_name: "NIC Asia",
                          account_number: "***",
                          nationality: "Nepali",
-                         mobile: "(+977)98********")
+                         mobile: "(+977)98********",
+                         new_created: true,
+                         updated: false)
     account = Account.create!(post: "Manager",
                               salary: "50000.00",
                               joining_date: Time.zone.now,
-                              working_plan: "full")
+                              working_plan: "full",
+                              new_created: true,
+                              updated: false)
     account.update_attribute(:net_total_addition, account.addition_holiday + account.addition_overtime + account.addition_miscellaneous)
     account.update_attribute(:net_total_deduction, account.company_deduction_absent + (account.company_deduction_wtax * account.salary / 100) + account.deduction_late + account.deduction_loan + account.deduction_miscellaneous)
     account.update_attribute(:net_pay, account.salary + account.net_total_addition - account.net_total_deduction)
     admin.account = account
 
     # creating other users
-    99.times do |n|
+    29.times do |n|
       # these data are for user model
       name = Faker::Name.name
       email = "user-#{n+1}@example.com"
@@ -57,11 +61,15 @@ namespace :db do
                           nationality: nationality,
                           mobile: mobile,
                           home: home,
-                          work: work)
+                          work: work,
+                          new_created: true,
+                          updated: false)
       account = Account.create!(post: post,
                                 salary: salary,
                                 joining_date: joining_date,
-                                working_plan: working_plan)
+                                working_plan: working_plan,
+                                new_created: true,
+                                updated: false)
       account.update_attribute(:net_total_addition, account.addition_holiday + account.addition_overtime + account.addition_miscellaneous)
       account.update_attribute(:net_total_deduction, account.company_deduction_absent + (account.company_deduction_wtax * account.salary / 100) + account.deduction_late + account.deduction_loan + account.deduction_miscellaneous)
       account.update_attribute(:net_pay, account.salary + account.net_total_addition - account.net_total_deduction)

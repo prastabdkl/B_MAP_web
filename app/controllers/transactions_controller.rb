@@ -6,7 +6,6 @@ class TransactionsController < ApplicationController
 
   def create
     @this_capital = Capital.find_by(id: params[:cap_id])
-    @this_capital.update_attribute(:updated, true)
     @transaction = @this_capital.transactions.build(transaction_params)
     @transaction.update_attribute(:new_created, true)
     if @transaction.save

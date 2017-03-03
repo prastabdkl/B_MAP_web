@@ -4,6 +4,9 @@ class Api::V1::AccountController < Api::V1::BaseController
 
   def show
     account = Account.find(params[:id])
+    unless (curr_user.is_admin || account.user_id == curr_user.id)
+      account = nil
+    end
 
     unless account.nil?
       render json: account, status: 200

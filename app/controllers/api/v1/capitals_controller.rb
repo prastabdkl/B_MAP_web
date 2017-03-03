@@ -4,7 +4,11 @@ class Api::V1::CapitalsController < Api::V1::BaseController
   respond_to :json
 
   def index
-    capitals = Capital.where(user_id: curr_user.id, capital_type: params[:capi_type])
+    if (params[:capi_type] != nil)
+      capitals = Capital.where(user_id: curr_user.id, capital_type: params[:capi_type])
+    else
+      capitals = Capital.where(user_id: curr_user.id)
+    end
 
     capitals = apply_filters(capitals, params)
 

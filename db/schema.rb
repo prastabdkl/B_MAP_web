@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170228044808) do
     t.decimal  "net_total_addition",       precision: 8, scale: 2, default: 0.0
     t.decimal  "net_total_deduction",      precision: 8, scale: 2, default: 0.0
     t.decimal  "net_pay",                  precision: 8, scale: 2
-    t.boolean  "new_created",                                      default: false
+    t.boolean  "new_created",                                      default: true
     t.boolean  "updated",                                          default: false
   end
 
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170228044808) do
     t.integer  "user_id"
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
-    t.boolean  "new_created",                          default: false
+    t.boolean  "new_created",                          default: true
     t.boolean  "updated",                              default: false
   end
 
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20170228044808) do
     t.integer  "capital_id"
     t.datetime "created_at",                                                 null: false
     t.datetime "updated_at",                                                 null: false
-    t.boolean  "new_created",                         default: false
+    t.boolean  "new_created",                         default: true
     t.boolean  "updated",                             default: false
   end
 
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20170228044808) do
     t.string   "image"
     t.string   "auth_token"
     t.boolean  "updated",           default: false
-    t.boolean  "new_created",       default: false
+    t.boolean  "new_created",       default: true
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true

@@ -15,7 +15,6 @@ class CapitalsController < ApplicationController
 
   def create
     @capital = current_user.capitals.build(capital_params)
-    @capital.update_attribute(:new_created, true)
     @capital.capital_type = @capital_type
     flash[:success] = 'Party successfully created.'
     if @capital.save
