@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::V1::BaseController
 	include ActiveHashRelation
-	before_action :authenticate_request, only: [:show, :index, :update, :destroy, :get_new_created_users, :get_updated_users]
+	before_action :authenticate_request, only: [:show, :index, :create, :update, :destroy, :get_new_created_users, :get_updated_users]
 	skip_before_action :verify_authenticity_token
 	respond_to :json
 
@@ -18,10 +18,11 @@ class Api::V1::UsersController < Api::V1::BaseController
 		user = User.new(user_params)
 		account = Account.new
 		user.account = account
+		debugger
 		if user.save
-			if curr_user.is_admin
-				user.update_attribute(:activated, true)
-				user.update_attribute(:activated_at, Time.now)
+			if @curr_user.is_admin
+				# user.update_attribute(:activated, true)
+				# user.update_attribute(:activated_at, Time.now)
 				render json: user, status: 201
 			else
 				render json: { error: "Only for admin"}, staus: 406
