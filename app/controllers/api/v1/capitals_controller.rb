@@ -64,6 +64,6 @@ class Api::V1::CapitalsController < Api::V1::BaseController
   private
 
   def capital_params
-    params.permit(:name, :description, :phone_no, :address, :total_amount, :capital_type)
+    params.permit(:name, :description, :phone_no, :address, :total_amount, :capital_type, :new_created, :updated)
   end
 end

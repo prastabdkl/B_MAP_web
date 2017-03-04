@@ -80,6 +80,6 @@ class Api::V1::UsersController < Api::V1::BaseController
 	private
 
 	def user_params
-		params.permit(:name, :email, :password, :password_confirmation, :is_admin, :address, :bank_name, :account_number, :nationality, :mobile, :home, :work)
+		params.permit(:name, :email, :password, :password_confirmation, :is_admin, :address, :bank_name, :account_number, :nationality, :mobile, :home, :work, :new_created, :updated)
 	end
 end

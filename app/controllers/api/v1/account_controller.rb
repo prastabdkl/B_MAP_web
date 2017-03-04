@@ -42,6 +42,6 @@ class Api::V1::AccountController < Api::V1::BaseController
     params.permit(:post, :salary, :joining_date, :working_plan, :addition_holiday,
                   :addition_overtime, :addition_miscellaneous, :deduction_loan,
                   :deduction_late, :deduction_miscellaneous, :company_deduction_absent,
-                  :company_deduction_wtax)
+                  :company_deduction_wtax, :new_created, :updated)
   end
 end

@@ -32,6 +32,15 @@ class Api::V1::TransactionsController < Api::V1::BaseController
     end
   end
 
+  def update
+    transaction = Transaction.find(params[:id])
+    if transaction.update(transaction_params)
+      render json: transaction, status: 200
+    else
+      render json: { error: transaction.errors}, status: 422
+    end
+  end
+
   def get_new_created_transactions
     new_created_transactions = Transaction.where(new_created: true);
     unless new_created_transactions.nil?
@@ -44,6 +53,6 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   private
 
   def transaction_params
-    params.permit(:date, :cash_type, :amount)
+    params.permit(:date, :cash_type, :amount, :new_created, :updated)
   end
 end
