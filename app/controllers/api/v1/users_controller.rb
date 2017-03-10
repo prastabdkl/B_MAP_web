@@ -18,7 +18,7 @@ class Api::V1::UsersController < Api::V1::BaseController
 		user = User.new(user_params)
 		account = Account.new
 		user.account = account
-		debugger
+		# debugger
 		if user.save
 			if @curr_user.is_admin
 				# user.update_attribute(:activated, true)

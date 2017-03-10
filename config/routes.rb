@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :create, :show, :update, :destroy,]
       resources :account, only: [:show, :update]
       resources :capitals, only: [:create, :update, :index, :destroy]
-      resources :transactions, only: [:create, :index]
+      resources :transactions, only: [:create, :index, :update]
     end
   end
 end
