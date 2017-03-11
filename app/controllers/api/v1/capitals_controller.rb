@@ -5,7 +5,7 @@ class Api::V1::CapitalsController < Api::V1::BaseController
 
   def index
     if (params[:capi_type] != nil)
-      capitals = Capital.where(user_id: curr_user.id, capital_type: params[:capi_type])
+      capitals = Capital.where(user_id: curr_user.id)
     else
       capitals = Capital.where(user_id: curr_user.id)
     end
@@ -21,7 +21,7 @@ class Api::V1::CapitalsController < Api::V1::BaseController
     #debugger
     capital = curr_user.capitals.new(capital_params)
     if capital.save
-      render json: capitals, each_serializer: Api::V1::CapitalSerializer, status: 201
+      render json: capital, each_serializer: Api::V1::CapitalSerializer, status: 201
     else
       render json: { errors: capital.errors}, status: 422
     end
