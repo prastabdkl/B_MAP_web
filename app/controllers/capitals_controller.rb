@@ -31,6 +31,17 @@ class CapitalsController < ApplicationController
   end
 
   def destroy
+    RecycleBin.create(table_name: "capitals", corr_id: params[:id]) if Capital.find_by(id: params[:id]).new_created == false
+    transactions = Transaction.where(capital_id: params[:id], new_created: false)
+    begin
+      transactions.each do |transaction|
+        RecycleBin.create(table_name: "transactions", corr_id: transaction.id)
+      end
+    rescue
+    end
+    debugger
+
+
     Capital.find(params[:id]).destroy
     flash[:success] = 'Party deleted.'
     redirect_to capitals_url(capi_type: @capital_type)

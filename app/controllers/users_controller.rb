@@ -59,6 +59,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    RecycleBin.create(table_name: "users", corr_id: params[:id])
+
     User.find(params[:id]).destroy
     flash[:success] = 'User deleted'
     redirect_to users_url

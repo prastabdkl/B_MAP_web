@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228044808) do
+ActiveRecord::Schema.define(version: 20170313104135) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "post",                                             default: ""
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(version: 20170228044808) do
   end
 
   add_index "capitals", ["user_id"], name: "index_capitals_on_user_id"
+
+  create_table "recycle_bins", force: :cascade do |t|
+    t.string   "table_name"
+    t.integer  "corr_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "transactions", force: :cascade do |t|
     t.date     "date",                                default: '2017-02-02'
