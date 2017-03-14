@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         get 'updated/accounts', to: 'account#get_updated_accounts'
         get 'updated/capitals', to: 'capitals#get_updated_capitals'
         get 'updated/users', to: 'users#get_updated_users'
+        resources :recycle_bin, only: [:index, :destroy]
       post 'authenticate', to: 'authentication#authenticate'
       resources :sessions, only: [:create, :destroy]
       resources :users, only: [:index, :create, :show, :update, :destroy,]
