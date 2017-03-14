@@ -15,7 +15,7 @@ RSpec.describe "UserPages", type: :request do
 
     describe "pagination" do
 
-      before(:all) { 30.times { FactoryGirl.create(:user)}}
+      before(:all) { 20.times { FactoryGirl.create(:user)}}
       after(:all) { User.delete_all}
 
       it { should have_selector(".pagination")}

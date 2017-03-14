@@ -1,0 +1,2 @@
+module RecycleBinHelper
+end

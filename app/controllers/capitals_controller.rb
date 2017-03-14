@@ -31,7 +31,7 @@ class CapitalsController < ApplicationController
   end
 
   def destroy
-    RecycleBin.create(table_name: "capitals", corr_id: params[:id], user_id: current_user) if Capital.find_by(id: params[:id]).new_created == false
+    RecycleBin.create(table_name: "capitals", corr_id: params[:id], user_id: current_user.id) if Capital.find_by(id: params[:id]).new_created == false
     transactions = Transaction.where(capital_id: params[:id])
       transactions.each do |transaction|
         if transaction.new_created == true
@@ -40,8 +40,6 @@ class CapitalsController < ApplicationController
           RecycleBin.create(table_name: "transactions", corr_id: transaction.id, user_id: current_user)
         end
       end
-    debugger
-
 
     Capital.find(params[:id]).destroy
     flash[:success] = 'Party deleted.'

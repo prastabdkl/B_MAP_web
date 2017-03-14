@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   match '/login', to: 'sessions#new', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'delete'
   root 'static_pages#home'
+  resources :recycle_bins, only: [:create, :destroy]
 
   # for api
   namespace :api do
