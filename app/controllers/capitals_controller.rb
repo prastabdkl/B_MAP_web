@@ -31,14 +31,15 @@ class CapitalsController < ApplicationController
   end
 
   def destroy
-    RecycleBin.create(table_name: "capitals", corr_id: params[:id]) if Capital.find_by(id: params[:id]).new_created == false
-    transactions = Transaction.where(capital_id: params[:id], new_created: false)
-    begin
+    RecycleBin.create(table_name: "capitals", corr_id: params[:id], user_id: current_user) if Capital.find_by(id: params[:id]).new_created == false
+    transactions = Transaction.where(capital_id: params[:id])
       transactions.each do |transaction|
-        RecycleBin.create(table_name: "transactions", corr_id: transaction.id)
+        if transaction.new_created == true
+          transaction.destroy
+        else
+          RecycleBin.create(table_name: "transactions", corr_id: transaction.id, user_id: current_user)
+        end
       end
-    rescue
-    end
     debugger
 
 

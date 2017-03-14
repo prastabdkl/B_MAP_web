@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313104135) do
+ActiveRecord::Schema.define(version: 20170314081124) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "post",                                             default: ""
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20170313104135) do
     t.integer  "corr_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
