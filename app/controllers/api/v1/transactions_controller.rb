@@ -26,7 +26,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
         capital.update_attribute(:total_amount, capital.total_amount -= transaction.amount.to_d) if capital.capital_type == "Payable"
         capital.update_attribute(:total_amount, capital.total_amount += transaction.amount.to_d) if capital.capital_type == "Receivable"
       end
-      render json: transactions, status: 201
+      render json: transaction, status: 201
     else
       render json: { errors: transaction.errors}, status: 406
     end

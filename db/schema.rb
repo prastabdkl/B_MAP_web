@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20170314081124) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.date     "date",                                default: '2017-03-14'
+    t.date     "date",                                default: '2017-02-02'
     t.decimal  "amount",      precision: 8, scale: 2
     t.string   "cash_type"
     t.integer  "capital_id"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20170314081124) do
     t.string   "remember_token"
     t.boolean  "is_admin",          default: false
     t.string   "activation_digest"
-    t.boolean  "activated",         default: true
+    t.boolean  "activated",         default: false
     t.datetime "activated_at"
     t.string   "address"
     t.string   "bank_name"
