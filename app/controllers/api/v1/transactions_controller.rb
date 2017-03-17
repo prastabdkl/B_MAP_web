@@ -14,7 +14,6 @@ class Api::V1::TransactionsController < Api::V1::BaseController
 
   def create
     # remember to send capital_id as parameter while calling create action
-    transactions = Transaction.all
     capital = Capital.find(params[:capital_id])
     transaction = capital.transactions.new(transaction_params)
 
