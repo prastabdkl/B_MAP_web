@@ -2,7 +2,8 @@ class Api::V1::CapitalsController < Api::V1::BaseController
   before_action :authenticate_request, only: [:index, :create, :update, :destroy, :get_new_created_capitals, :get_updated_capitals]
   skip_before_action :verify_authenticity_token
   respond_to :json
-
+  # there are six different actions, index create update destroy edit and show
+  
   def index
     if (params[:capi_type] != nil)
       capitals = Capital.where(user_id: curr_user.id)
